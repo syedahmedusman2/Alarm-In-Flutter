@@ -1,0 +1,106 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+
+class Homepage extends StatefulWidget {
+  const Homepage({Key? key}) : super(key: key);
+
+  @override
+  _HomepageState createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      extendBodyBehindAppBar: false,
+      appBar: AppBar(
+        title: const Text('Homepage'),
+      ),
+      body: Column(
+        children: [
+          Container(
+            height:MediaQuery.of(context).size.height/2,
+            width: MediaQuery.of(context).size.width * 1,
+            decoration: BoxDecoration(
+              // ignore: prefer_const_literals_to_create_immutables
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color.fromARGB(255, 2, 199, 256),
+                    Color.fromARGB(255, 6, 75, 210),
+                  ]),
+              borderRadius: BorderRadius.vertical(
+                  bottom: Radius.elliptical(
+                      MediaQuery.of(context).size.width, 100)),
+            ),
+            child: Center(
+                child: Text(
+              "data",
+              style: TextStyle(fontSize: 70),
+            )),
+          ),
+          SizedBox(
+            height:MediaQuery.of(context).size.height*0.09,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              OutlinedButton(
+                onPressed: () {},
+                child: Icon(Icons.mic, color: Colors.red,),
+                style: OutlinedButton.styleFrom(
+                  side: BorderSide(width: 2, color: Colors.orange),
+                 shape: StadiumBorder(),
+                ),
+              ),
+              SizedBox(width:30),
+              OutlinedButton(
+                onPressed: () {},
+                child: Icon(Icons.stop, color: Colors.black,),
+                style: OutlinedButton.styleFrom(
+                  side: BorderSide(width: 2, color: Colors.orange),
+                  shape: StadiumBorder(),
+                ),
+              )
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              OutlinedButton(
+                onPressed: () {},
+                child: Icon(Icons.play_arrow, color: Colors.black,),
+                style: OutlinedButton.styleFrom(
+                  side: BorderSide(width: 2, color: Colors.orange),
+                  shape: StadiumBorder(),
+                ),
+              ),
+              SizedBox(width: 30),
+              OutlinedButton(
+                
+                onPressed: () {},
+                child: Icon(Icons.stop, color: Colors.black,),
+                style: OutlinedButton.styleFrom(
+                  side: BorderSide(width: 2, color: Colors.orange),
+                  
+                  shape: StadiumBorder(),
+                ),
+              )
+            ],
+          ),
+          SizedBox(
+            height: 13,
+          ),
+          ElevatedButton.icon(onPressed: (){}, label: Text('Button'),icon: Icon(Icons.play_arrow),),
+        ],
+      ),
+    );
+  }
+}
