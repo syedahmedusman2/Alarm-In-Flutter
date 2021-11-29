@@ -2,7 +2,9 @@
 
 import 'dart:ui';
 
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sound/flutter_sound.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -12,6 +14,23 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  FlutterSoundRecorder? _myrecorder;
+  final audioPlayer = AssetsAudioPlayer();
+  String? filePath;
+  bool _play = false;
+
+  void startIt()async{
+    filePath = '/sdcard/Download/temp.wav';
+    _myrecorder = FlutterSoundRecorder();
+    await _myrecorder!.openAudioSession(
+      focus: AudioFocus.requestFocusAndStopOthers,
+      category: SessionCategory.playAndRecord,
+      mode: SessionMode.modeDefault,
+      device: AudioDevice.speaker
+    );
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
