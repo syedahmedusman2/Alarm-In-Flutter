@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:async';
+import 'dart:io';
 import 'dart:ui';
+import 'package:path/path.dart' as path;
 
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +26,7 @@ class _HomepageState extends State<Homepage> {
   final audioPlayer = AssetsAudioPlayer();
   String? filePath;
   bool _play = false;
+  String _recorderTxt = '00:00:00';
 
   void startIt()async{
     filePath = '/sdcard/Download/temp.wav';
@@ -137,5 +141,43 @@ class _HomepageState extends State<Homepage> {
         ],
       ),
     );
+  }
+  Future<void> record() async {
+    Directory dir = Directory(path.dirname(filePath!));
+    if (!dir.existsSync()) {
+      dir.createSync();
+    }
+    _myrecorder!.openAudioSession();
+    await _myrecorder!.startRecorder(
+      toFile: filePath,
+      codec: Codec.pcm16WAV,
+    );
+
+    StreamSubscription _recorderSubscription = _myrecorder!.onProgress!.listen((e) {
+      var date = DateTime.fromMillisecondsSinceEpoch(e.duration.inMilliseconds, isUtc: true);
+      var txt = DateFormat('mm:ss:SS', 'en_GB').format(date);
+
+      setState(() {
+        _recorderTxt = txt.substring(0, 8);
+      });
+    });
+    _recorderSubscription.cancel();
+  }
+
+  Future<String?> stopRecord() async {
+    _myrecorder!.closeAudioSession();
+    return await _myrecorder!.stopRecorder();
+  }
+
+  Future<void> startPlaying() async {
+    audioPlayer.open(
+      Audio.file(filePath!),
+      autoStart: true,
+      showNotification: true,
+    );
+  }
+
+  Future<void> stopPlaying() async {
+    audioPlayer.stop();
   }
 }
