@@ -41,6 +41,11 @@ class _HomepageState extends State<Homepage> {
     await Permission.manageExternalStorage.request();
 
   }
+  @override
+  void initState() {
+    super.initState();
+    startIt();
+  }
 
   @override
   Widget build(BuildContext context) {
