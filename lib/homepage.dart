@@ -78,7 +78,7 @@ class _HomepageState extends State<Homepage> {
             ),
             child: Center(
                 child: Text(
-              "data",
+              "$_recorderTxt",
               style: TextStyle(fontSize: 70),
             )),
           ),
@@ -89,7 +89,9 @@ class _HomepageState extends State<Homepage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  record();
+                },
                 child: Icon(Icons.mic, color: Colors.red,),
                 style: OutlinedButton.styleFrom(
                   side: BorderSide(width: 2, color: Colors.orange),
@@ -98,7 +100,9 @@ class _HomepageState extends State<Homepage> {
               ),
               SizedBox(width:30),
               OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  stopRecord();
+                },
                 child: Icon(Icons.stop, color: Colors.black,),
                 style: OutlinedButton.styleFrom(
                   side: BorderSide(width: 2, color: Colors.orange),
@@ -114,7 +118,9 @@ class _HomepageState extends State<Homepage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  startPlaying();
+                },
                 child: Icon(Icons.play_arrow, color: Colors.black,),
                 style: OutlinedButton.styleFrom(
                   side: BorderSide(width: 2, color: Colors.orange),
@@ -124,7 +130,9 @@ class _HomepageState extends State<Homepage> {
               SizedBox(width: 30),
               OutlinedButton(
                 
-                onPressed: () {},
+                onPressed: () {
+                  stopPlaying();
+                },
                 child: Icon(Icons.stop, color: Colors.black,),
                 style: OutlinedButton.styleFrom(
                   side: BorderSide(width: 2, color: Colors.orange),
